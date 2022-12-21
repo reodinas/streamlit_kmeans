@@ -17,6 +17,9 @@ def main():
         df = pd.read_csv(file)
         st.dataframe(df)
         
+        # 결측값 처리
+        df.dropna(inplace=True)
+
         # 3. k-means 클러스터링을 하기위해 X로 사용할 컬럼을 설정할수있다
         X_col = st.multiselect('X로 사용할 컬럼을 선택하세요.', df.columns)
         if X_col:    
