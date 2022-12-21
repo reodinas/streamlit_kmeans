@@ -32,6 +32,9 @@ def main():
             for name in X.columns:
                 # 각 컬럼 데이터를 가져온다
                 data = X[name]
+
+                # dropna 했을 때 비어있는 인덱스가 생기는걸 처리
+                data.reset_index(inplace=True, drop=True)
                 
                 # 문자열인지 아닌지 나눠서 처리한다.
                 if data.dtype == object:
@@ -59,7 +62,14 @@ def main():
 
             # 4. WCSS를 확인하기위한 그룹의 갯수를 정할수있다. 
             st.subheader('WCSS를 위한 클러스터링 갯수 선택')
-            max_number = st.slider('최대 그룹 선택', 2, 15, value=10)
+
+            
+            if X_new.shape[0] < 10:
+                default_value = X_new.shape[0]
+            else:
+                default_value = 10
+
+            max_number = st.slider('최대 그룹 선택', 2, 15, value=default_value)
 
             wcss = []
             for k in np.arange(1, max_number+1):
