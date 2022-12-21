@@ -7,7 +7,7 @@ from sklearn.preprocessing import LabelEncoder, OneHotEncoder, MinMaxScaler
 from sklearn.compose import ColumnTransformer
 
 def main():
-    st.title('K-Means 클러스터링')
+    st.title('K-Means 클러스터링 앱')
 
     # 1. csv 파일을 업로드 할 수 있다.
     file = st.file_uploader('csv파일을 업로드 하세요', type=['csv'])
