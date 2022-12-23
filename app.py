@@ -4,11 +4,11 @@ os.environ["OMP_NUM_THREADS"] = "1"
 import streamlit as st
 import pandas as pd
 import numpy as np
-from sklearn.preprocessing import LabelEncoder, MinMaxScaler, OneHotEncoder
+from sklearn.preprocessing import LabelEncoder, MinMaxScaler
 from sklearn.cluster import KMeans
 import plotly.express as px
-from sklearn.compose import ColumnTransformer
-
+# from sklearn.compose import ColumnTransformer
+# from sklearn.preprocessing import OneHotEncoder
 
 
 def main():
@@ -111,7 +111,7 @@ def main():
 
             # 6. 실제로 그룹핑할 갯수 선택
             select_list = x_range[1:]
-            k = st.selectbox('그래프를 보고 최적의 클러스터 갯수를 선택하세요.', select_list)
+            k = st.selectbox('차트를 보고 최적의 클러스터 갯수를 선택하세요.', select_list)
 
             # 7.위에서 입력한 그룹의 갯수로 클러스터링
             kmeans = KMeans(n_clusters=k, random_state=10)
