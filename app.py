@@ -4,25 +4,11 @@ os.environ["OMP_NUM_THREADS"] = "1"
 import streamlit as st
 import pandas as pd
 import numpy as np
-from sklearn.preprocessing import LabelEncoder, MinMaxScaler
+from sklearn.preprocessing import LabelEncoder, MinMaxScaler, OneHotEncoder
 from sklearn.cluster import KMeans
 import plotly.express as px
+from sklearn.compose import ColumnTransformer
 
-
-# 백그라운드 이미지 함수
-def add_bg_from_url(img_url):
-    st.markdown(
-         f"""
-         <style>
-         .stApp {{
-             background-image: url({img_url});
-             background-attachment: fixed;
-             background-size: cover
-         }}
-         </style>
-         """,
-         unsafe_allow_html=True
-     )
 
 
 def main():
@@ -81,9 +67,9 @@ def main():
                     else:
                         # 원핫 인코딩
                         col_names = sorted(data.unique())
-
+                        # ct = ColumnTransformer(['encoder', OneHotEncoder(), [0]], remainder='passthrogh')
+                        # X_new[col_names] = ct.fit_transform(data)
                         X_new[col_names] = pd.get_dummies(data.to_frame())
-                        
                 
                 else:
                     # 숫자 데이터 처리
@@ -130,7 +116,8 @@ def main():
             # 7.위에서 입력한 그룹의 갯수로 클러스터링
             kmeans = KMeans(n_clusters=k, random_state=10)
             y_pred = kmeans.fit_predict(X_new)
-
+            st.header('')
+            st.subheader('클러스터링 결과')
             df['Group'] = y_pred
             st.dataframe(df)
 
@@ -138,7 +125,7 @@ def main():
 
             st.header('')
             st.subheader('그룹이 추가된 데이터를 다운로드 받으실 수 있습니다.')
-            
+
             # 8. 그룹이 추가된 데이터를 다시 다운로드 받을 수 있다.
             with open('Kmeans_result.csv', 'rb') as f:
                 download = st.download_button('다운로드 받기', f, file_name='Kmeans_result.csv') 
