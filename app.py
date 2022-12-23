@@ -13,7 +13,7 @@ import plotly.express as px
 
 def main():
     
-    st.title('K-Means Clustering App')
+    st.title('K-Means Clustering App!')
     st.subheader('csv파일을 올리고 K-Means Clustering 수행할 수 있습니다.')
     st.sidebar.image('https://user-images.githubusercontent.com/120348461/209294709-bfbdf8a9-03c5-406d-9c98-403f8de1685b.jpg')
     st.sidebar.image('https://user-images.githubusercontent.com/120348461/209294238-c56b2b27-af3c-42db-bd87-e64c08c698f5.gif')
