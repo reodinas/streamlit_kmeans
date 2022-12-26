@@ -27,7 +27,7 @@
 * `requirements.txt`: 프로젝트에 사용한 라이브러리. 설치방법: `pip install -r requirements.txt`
 
 
-# Usage
+# Connection URL
 <http://ec2-3-39-253-47.ap-northeast-2.compute.amazonaws.com:8503/>
 
 # Debugging
